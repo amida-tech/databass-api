@@ -14,7 +14,7 @@ module.exports = {
     }
   },
   getCurrentUser: function(req, res) {
-    const currentUser = { userId: req.user, realm: req.realm};
+    const currentUser = { userId: req.user, realm: req.realm}; // Replace with User.findOne once model has been implmented.
     res.send(JSON.stringify(currentUser));
   }
 };
