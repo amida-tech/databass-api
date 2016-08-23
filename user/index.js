@@ -1,10 +1,11 @@
 const Token = require('./tokenModel');
+const User  = require('./userModel');
 
-module.exports = {
+const userController = {
   authenticate: function(req, res, next) {
     const requestToken = req.get('token');
     if (requestToken) {
-      Token.findOne({where: {body: req.get('token')}, attributes: ['userId', 'realm']}).then((token) => {
+      Token.findOne({where: {body: req.get('token')}, attributes: ['userId', 'realm']}).then(function(token) {
         req.user = token.userId;
         req.realm = token.realm;
         next();
@@ -18,3 +19,6 @@ module.exports = {
     res.send(JSON.stringify(currentUser));
   }
 };
+
+
+export default userController;

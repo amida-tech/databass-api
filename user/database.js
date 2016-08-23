@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const db = new Sequelize('indaba_s3', 'postgres', 'postgres', {
+const db = new Sequelize('MDB_Auth', 'postgres', 'postgres', {
   host: 'localhost',
   dialect: 'postgres',
   port: '5432',
