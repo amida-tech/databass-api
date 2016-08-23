@@ -9,14 +9,17 @@ const userController = {
   signOut: () => {
 
   },
+  getUser: (req, res) => {
+
+  },
   createUser: (req, res) => {
-    createNewUser(req, res, req.body.email, req.body.password);
+    createNewUser(res, req.body.email, req.body.password);
   }
 };
 
 //TODO: refactor callback hell with co or async/await.
 
-const createNewUser = (req, res, email, password) => {
+const createNewUser = (res, email, password) => {
     User.findOne({where:{email}}).then(data => {
       if (data) {
         res.status(400).send('An existing user has already used that email address.');
@@ -26,7 +29,7 @@ const createNewUser = (req, res, email, password) => {
           password: bcrypt.hashSync(password, 10),
           admin: false
         }).then(user => {
-          res.status(200).send(JSON.stringify({id: user.id, email: user.email}));
+          res.status(201).send(JSON.stringify({id: user.id, email: user.email}));
         });
       }
     });
