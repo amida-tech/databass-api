@@ -1,24 +1,35 @@
 const Token = require('./tokenModel');
 const User  = require('./userModel');
+const bcrypt = require('bcrypt');
 
 const userController = {
-  authenticate: function(req, res, next) {
-    const requestToken = req.get('token');
-    if (requestToken) {
-      Token.findOne({where: {body: req.get('token')}, attributes: ['userId', 'realm']}).then(function(token) {
-        req.user = token.userId;
-        req.realm = token.realm;
-        next();
-      });
-    } else {
-      res.sendStatus(401);
-    }
+  authenticate: (req, res, next) => {
+
   },
-  getCurrentUser: function(req, res) {
-    const currentUser = { userId: req.user, realm: req.realm}; // Replace with User.findOne once model has been implmented.
-    res.send(JSON.stringify(currentUser));
+  signOut: () => {
+
+  },
+  createUser: (req, res) => {
+    createNewUser(req, res, req.body.email, req.body.password);
   }
 };
 
+//TODO: refactor callback hell with co or async/await.
 
-export default userController;
+const createNewUser = (req, res, email, password) => {
+    User.findOne({where:{email}}).then(data => {
+      if (data) {
+        res.status(400).send('An existing user has already used that email address.');
+      } else {
+        User.create({
+          email,
+          password: bcrypt.hashSync(password, 10),
+          admin: false
+        }).then(user => {
+          res.status(200).send(JSON.stringify({id: user.id, email: user.email}));
+        });
+      }
+    });
+};
+
+module.exports = userController;

@@ -1,12 +1,12 @@
-import SQ from 'Sequelize';
-import database from './database';
+const SQ = require('sequelize');
+const db = require('./database');
 
-const User = database.define('user', {
+const User = db.define('user', {
   email: SQ.STRING(255),
-  password: SQ.STRING(255),
+  password: SQ.STRING,
   admin: SQ.BOOLEAN
   }, {
     timestamps: false
   });
 
-export default User;
+module.exports = User;
