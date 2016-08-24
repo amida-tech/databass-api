@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const config    = require('./config');
 
 const db = new Sequelize('MDB_Auth', 'postgres', 'postgres', {
   host: 'localhost',
@@ -11,7 +12,8 @@ const db = new Sequelize('MDB_Auth', 'postgres', 'postgres', {
   }
 });
 
-db.authenticate()
+db
+  .authenticate()
   .then(function(err) {
     console.log('Database connection has been established successfully. ');
   })
