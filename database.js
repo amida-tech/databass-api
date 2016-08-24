@@ -22,4 +22,3 @@ db
   });
 
 module.exports = db;
-

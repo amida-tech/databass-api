@@ -17,7 +17,7 @@ const app = express();
 const jsonParser = bodyParser.json();
 
 const JWTOptions = {
-  jwtFromRequest: ExtractJWT.fromAuthHeader(),
+  jwtFromRequest: ExtractJWT.fromAuthHeaderWithScheme('Bearer'),
   secretOrKey: config['development'].jwt.secret
 };
 

@@ -1,5 +1,5 @@
 const SQ = require('sequelize');
-const db = require('./database');
+const db = require('./../database');
 
 const User = db.define('user', {
   email: SQ.STRING(255),
