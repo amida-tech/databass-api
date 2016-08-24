@@ -22,7 +22,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.post('/api/v1.0/user/create', jsonParser, User.createUser);
 app.get('/api/v1.0/user/token', passport.authenticate('basic', {session: false}), (req, res) => {
-  console.log('this was executed');
   if (req.user) {
 
     const user = {
