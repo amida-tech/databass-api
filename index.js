@@ -6,7 +6,7 @@ const User       = require('./user');
 const passport   = require('passport');
 const auth       = require('./auth');
 const BasicStrategy = require('passport-http').BasicStrategy;
-
+const logger     = require('./logger');
 const app        = express();
 const jsonParser = bodyParser.json();
 
@@ -16,6 +16,7 @@ passport.use(new BasicStrategy(auth.basicStrategy));
 /* Routes */
 
 //app.get('/api/v1.0/user', jsonParser, User.authenticate, User.getCurrentUser);
+app.use(logger);
 app.use(jsonParser);
 app.use(passport.initialize());
 app.use(passport.session());
