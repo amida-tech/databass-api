@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 const userController = {
   create: (req, res) => {
-    createNewUser(res, req.body.email, req.body.password);
+    createUserIfNonExistent(res, req.body.email, req.body.password);
   }
 };
 
@@ -19,7 +19,7 @@ const createUserIfNonExistent = (res, email, password) => {
           password: bcrypt.hashSync(password, 10),
           admin: false
         }).then(user => {
-          res.status(201).send(JSON.stringify({id: user.id, email: user.email}));
+          res.status(201).json({id: user.id, email: user.email});
         });
       }
     });
