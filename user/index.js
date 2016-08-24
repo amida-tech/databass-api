@@ -3,14 +3,16 @@ const User  = require('./userModel');
 const bcrypt = require('bcrypt');
 
 const userController = {
+  signIn: (req, res) => {
+  },
   authenticate: (req, res, next) => {
 
   },
-  signOut: () => {
+  signOut: (req, res) => {
 
   },
   getUser: (req, res) => {
-
+    // wait to implement with JWT.
   },
   createUser: (req, res) => {
     createNewUser(res, req.body.email, req.body.password);
