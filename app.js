@@ -30,8 +30,10 @@ app.use(jsonParser);
 app.use(passport.initialize());
 app.use(passport.session());
 
-/* User Routes */
-app.post('/api/v1.0/user/create', jsonParser, UserController.createNewUser);
+//
+// User Routes
+//
+app.post('/api/v1.0/user', jsonParser, UserController.createNewUser);
 app.get('/api/v1.0/user/token', passport.authenticate('basic', {session: false}), TokenController.create);
 app.get('/api/v1.0/user', passport.authenticate('jwt', {session: false}), UserController.showCurrentUser);
 
