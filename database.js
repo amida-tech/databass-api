@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const config    = require('./config');
+const config    = require('./config/config');
 
 const db = new Sequelize('MDB_Auth', 'postgres', 'postgres', {
   host: 'localhost',
