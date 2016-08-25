@@ -8,7 +8,6 @@ const userController = {
   showCurrentUser: (req, res) => {
     if (req.user) {
       const currentUser = {
-        id: req.user.id,
         email: req.user.email,
         admin: req.user.admin
       };

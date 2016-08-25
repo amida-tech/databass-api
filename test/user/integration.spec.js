@@ -36,7 +36,7 @@ describe('Starting API Server', function() {
       });
   });
 
-  it('Returns a user\'s own data after authenticating the API', function(done){
+  it('Returns a user\'s own data after authenticating the API', function(done) {
     request(server)
       .get('/api/v1.0/user')
       .set('Authorization', 'Bearer ' + jwt)
