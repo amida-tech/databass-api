@@ -47,3 +47,14 @@ enables users to keep track of policy changes in a database-style dashboard.
 4. Create a development and test database in PostgreSQL that match the values above.
 5. Bootstrap the users table in each database by restoring the `db_bootstrap/schema.sql` file with `psql`. e.g. `psql DATABASE_NAME < db_bootstrap/schema.sql`.
 6. To run the application in a development environment, type `npm start` in the root directory.
+
+## Contributing
+
+This project is using a Pod-like organizational structure. When contributing a new resource ( model, controller, routes ), please create a directory named after the resource ( like `user`). The model, if needed, should be named model.js. The controller should be named `controller.js`. Each *Pod* should have an index.js file that exports the controller for that resource.
+
+When creating controllers try to keep non route-handling logic in private methods that are not exported for use in connect middleware. A good example can be found in `token/controller.js`.
+
+## Immediate TODOS
+- Switch to async bcrypt hashing
+- Integrate an automated migration toolkit.
+- Store JWT in HTTPOnly / Secure Cookie.
