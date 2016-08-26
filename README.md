@@ -10,6 +10,7 @@ enables users to keep track of policy changes in a database-style dashboard.
    in caps with your own settings. You may also run ENV variables as the values
    for this file ( recommended for production environments ). I recommend having
    separate databases for test and development.
+
         const config = {
           development: {
             db: {
