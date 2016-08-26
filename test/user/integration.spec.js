@@ -14,14 +14,22 @@ let user = {
 };
 
 describe('Starting API Server', function() {
+
   before(function() {
     server = require('../../app').listen(3006);
-    UserModel.create(user);
   });
+
   after(function(){
     UserModel.destroy({where: {email: user.email}}).then(function(){
       server.close();
     });
+  });
+
+  it('Creates a user via REST api.', function createUser(done) {
+    request(server)
+      .post('/api/v1.0/user')
+      .send({email: user.email, password: "password"})
+      .expect(201, done)
   });
 
   it('Authenticates a user and returns a JWT', function createToken(done) {
@@ -36,7 +44,7 @@ describe('Starting API Server', function() {
       });
   });
 
-  it('Returns a user\'s own data after authenticating the API', function(done) {
+  it('Returns a user\'s own data after authenticating the API', function showUser(done) {
     request(server)
       .get('/api/v1.0/user')
       .set('Authorization', 'Bearer ' + jwt)

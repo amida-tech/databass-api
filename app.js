@@ -1,5 +1,7 @@
 'use strict';
 
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
 const express    = require('express');
 const bodyParser = require('body-parser');
 const UserController = require('./user');
@@ -25,7 +27,7 @@ passport.use(new BasicStrategy(auth.basicStrategy));
 passport.use(new JWTStrategy(JWTOptions, auth.jwtStrategy));
 
 /* Middleware */
-app.use(logger);
+if (process.env.NODE_ENV === 'development') app.use(logger);
 app.use(jsonParser);
 app.use(passport.initialize());
 app.use(passport.session());
