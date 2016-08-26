@@ -1,5 +1,4 @@
 const User = require('./user/model');
-const bcrypt = require('bcrypt');
 
 module.exports = {
   basicStrategy: function(email, password, done) {
