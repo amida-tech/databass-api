@@ -26,7 +26,7 @@ const createUserIfNonExistent = (res, email, password) => {
     } else {
       User.create({
         email,
-        password: bcrypt.hashSync(password, 10),
+        password: User.hashPassword(password),
         admin: false
       }).then(user => {
         res.status(201).json({id: user.id, email: user.email});

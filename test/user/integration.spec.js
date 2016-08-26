@@ -2,7 +2,6 @@ process.env.NODE_ENV = 'test';
 
 const UserModel = require('../../user/model');
 const config    = require('../../config');
-const bcrypt    = require('bcrypt');
 const request   = require('supertest');
 
 let server;
@@ -10,7 +9,7 @@ let jwt;
 
 let user = {
   email: 'test@amida-tech.com',
-  password: bcrypt.hashSync('password', 10)
+  password: UserModel.hashPassword('password', 10)
 };
 
 describe('Starting API Server', function() {
