@@ -3,6 +3,7 @@
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 const express    = require('express');
+const cors       = require('cors');
 const bodyParser = require('body-parser');
 const UserController = require('./user');
 const TokenController = require('./token');
@@ -23,11 +24,16 @@ const JWTOptions = {
   secretOrKey: config.jwt.secret
 };
 
+const CORSOptions = {
+  origin: "http://localhost:1337"
+};
+
 passport.use(new BasicStrategy(auth.basicStrategy));
 passport.use(new JWTStrategy(JWTOptions, auth.jwtStrategy));
 
 /* Middleware */
 if (process.env.NODE_ENV === 'development') app.use(logger);
+app.use(cors(CORSOptions));
 app.use(jsonParser);
 app.use(passport.initialize());
 app.use(passport.session());
