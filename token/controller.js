@@ -15,7 +15,6 @@ module.exports = {
 
 function createJWT(payload) {
   const options = { expiresIn: "30d" };
-  // replace 'development' with process ENV.
   return jwt.sign(payload, config.jwt.secret, options);
 }
 
