@@ -7,6 +7,7 @@ const cors       = require('cors');
 const bodyParser = require('body-parser');
 const UserController = require('./user');
 const TokenController = require('./token');
+const ActivityController = require('./activity');
 const passport   = require('passport');
 const auth       = require('./auth');
 const BasicStrategy = require('passport-http').BasicStrategy;
@@ -44,6 +45,7 @@ app.use(passport.session());
 app.post('/api/v1.0/user', jsonParser, UserController.createNewUser);
 app.get('/api/v1.0/user/token', passport.authenticate('basic', {session: false}), TokenController.create);
 app.get('/api/v1.0/user', passport.authenticate('jwt', {session: false}), UserController.showCurrentUser);
+app.get('/api/v1.0/activities', passport.authenticate('jwt', { session: false }), ActivityController.showActivities);
 
 
 module.exports = app;

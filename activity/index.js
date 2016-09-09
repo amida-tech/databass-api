@@ -1,1 +1,1 @@
-//const ActivityController = require('./controller');
+module.exports = require('./controller');

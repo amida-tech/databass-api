@@ -1,7 +1,7 @@
 const User = require('./model');
 const bcrypt = require('bcrypt');
 
-const userController = {
+const UserController = {
   createNewUser: (req, res) => {
     createUserIfNonExistent(res, req.body.email, req.body.password);
   },
@@ -35,4 +35,4 @@ const createUserIfNonExistent = (res, email, password) => {
   });
 };
 
-module.exports = userController;
+module.exports = UserController;
