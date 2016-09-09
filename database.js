@@ -1,10 +1,10 @@
 const Sequelize = require('sequelize');
 const config    = require('./config');
 
-const db = new Sequelize(config.db.name, config.db.user, config.db.pass, {
-  host: config.db.host,
-  dialect: config.db.dialect,
-  port: config.db.port,
+const db = new Sequelize(config.userdb.name, config.userdb.user, config.userdb.pass, {
+  host: config.userdb.host,
+  dialect: config.userdb.dialect,
+  port: config.userdb.port,
   pool: {
     max: 20,
     min: 0,
