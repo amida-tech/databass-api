@@ -1,10 +1,10 @@
 const Sequelize = require('sequelize');
-const config    = require('../config');
+const config    = require('./../config/index');
 
-const ActivityStore = new Sequelize(config.db.name, config.db.user, config.db.pass, {
-  host: config.db.host,
-  dialect: config.db.dialect,
-  port: config.db.port,
+const db = new Sequelize(config.userdb.name, config.userdb.user, config.userdb.pass, {
+  host: config.userdb.host,
+  dialect: config.userdb.dialect,
+  port: config.userdb.port,
   pool: {
     max: 20,
     min: 0,
@@ -12,7 +12,7 @@ const ActivityStore = new Sequelize(config.db.name, config.db.user, config.db.pa
   }
 });
 
-ActivityStore
+db
   .authenticate()
   .then(function() {
     console.log('Database connection has been established successfully.');
@@ -21,4 +21,4 @@ ActivityStore
     console.log('Unable to connect to the database: ', err);
   });
 
-module.exports = ActivityStore;
+module.exports = db;

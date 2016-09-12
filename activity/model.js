@@ -1,5 +1,5 @@
 const SQ = require('sequelize');
-const ActivityStore = require('./store');
+const ActivityStore = require('../database');
 
 const Activity = ActivityStore.define('activity', {
     PolicyNumber: SQ.STRING,
