@@ -35,6 +35,7 @@ passport.use(new JWTStrategy(JWTOptions, auth.jwtStrategy));
 
 /* Middleware */
 if (process.env.NODE_ENV === 'development') app.use(logger);
+
 app.use(cors(CORSOptions));
 app.use(jsonParser);
 app.use(passport.initialize());
@@ -46,8 +47,7 @@ app.use(passport.session());
 app.post('/api/v1.0/user', jsonParser, UserController.createNewUser);
 app.get('/api/v1.0/user/token', passport.authenticate('basic', {session: false}), TokenController.create);
 app.get('/api/v1.0/user', passport.authenticate('jwt', {session: false}), UserController.showCurrentUser);
-app.get('/api/v1.0/activities', passport.authenticate('jwt', { session: false }), ActivityController.showActivities);
+app.get('/api/v1.0/activities/:policyNumber', passport.authenticate('jwt', { session: false }), ActivityController.findActivityWithPolicyName);
 app.get('/api/v1.0/policies', passport.authenticate('jwt', { session: false }), PolicyController.showPolicies);
-
 
 module.exports = app;

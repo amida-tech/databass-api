@@ -7,7 +7,6 @@ module.exports = {
     if (token) {
       res.status(200).json({token}); // This is for development. We will probably want to return as a cookie.
     } else {
-      console.log("Error producing JWT: ", token);
       res.status(400);
     }
   }
@@ -19,6 +18,7 @@ function createJWT(payload) {
 }
 
 function createUserJWT(user) {
+
   const payload = {
     id: user.id,
     email: user.email,

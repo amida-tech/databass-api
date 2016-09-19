@@ -5,6 +5,11 @@ const ActivityController = {
     Activity.findAll().then(activities => {
       return res.json(activities);
     });
+  },
+  findActivityWithPolicyName: (req, res) => {
+    Activity.findAll({ where: { PolicyNumber: req.params.policyNumber }}).then(activities => {
+      return res.json(activities)
+    });
   }
 };
 
