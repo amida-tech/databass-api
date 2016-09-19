@@ -7,6 +7,7 @@ const request       = require('supertest');
 
 let server;
 let jwt;
+const policyNumber = 'DME101.030';
 
 let testUser = {
   email: 'test@amida-tech.com',
@@ -45,7 +46,7 @@ describe('Starting API Server', function() {
   function(done) {
 
     request(server)
-      .get('/api/v1.0/activities/DME101.030')
+      .get('/api/v1.0/activities/' + policyNumber)
       .set('Authorization', 'Bearer ' + jwt)
       .expect(200, done);
   });
