@@ -18,9 +18,10 @@ describe('Starting API Server', function() {
   before(function() {
     server = require('../../app').listen(3006);
   });
+
   after(function() {
     UserModel.destroy({where: {email: testUser.email}}).then(function(done) {
-      server.close();
+        server.close();
     });
   });
 
