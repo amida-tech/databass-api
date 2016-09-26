@@ -7,7 +7,15 @@ const ActivityController = {
     });
   },
   findActivityWithPolicyName: (req, res) => {
-    Activity.findAll({ where: { PolicyNumber: req.params.policyNumber }}).then(activities => {
+    Activity
+    .findAll(
+      {
+        where:
+        {
+          PolicyNumber: req.params.policyNumber
+        }
+      }
+    ).then(activities => {
       return res.json(activities)
     });
   }
