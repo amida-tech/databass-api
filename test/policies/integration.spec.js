@@ -44,11 +44,16 @@ describe('Starting API Server', function() {
 
   it('Returns an array of all policies',
   function(done) {
-
     request(server)
       .get('/api/v1.0/policies/')
       .set('Authorization', 'Bearer ' + jwt)
       .expect(200, done);
   });
 
+  it('Returns the data for a single specified policy', function(done) {
+    request(server)
+      .get('/api/v1.0/policies/DME101.030')
+      .set('Authorization', 'Bearer ' + jwt)
+      .expect(200, done);
+  });
 });
