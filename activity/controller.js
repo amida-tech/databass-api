@@ -8,14 +8,15 @@ const ActivityController = {
         return res.json(activities);
       });
   },
-  findActivityWithPolicyName: (req, res) => {
+  getActivityByPolicyNumber: (req, res) => {
     Activity
       .findAll(
         {
           where:
           {
             PolicyNumber: req.params.policyNumber
-          }
+          },
+          order: [['ActivityDate', 'DESC']]
         }
       )
       .then(activities => {
