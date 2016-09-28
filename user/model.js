@@ -1,5 +1,5 @@
 const SQ = require('sequelize');
-const db = require('./../database');
+const db = require('./store');
 const bcrypt = require('bcrypt');
 
 

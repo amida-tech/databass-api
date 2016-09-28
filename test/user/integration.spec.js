@@ -15,7 +15,7 @@ let user = {
 describe('Starting API Server', function() {
 
   before(function() {
-    server = require('../../app').listen(3006);
+    server = require('../../app').listen(3007);
   });
 
   after(function(){
