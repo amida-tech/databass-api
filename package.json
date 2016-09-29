@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node --harmony index.js",
+    "start": "NODE_ENV=development node --harmony index.js",
     "test": "NODE_ENV=development mocha test/*/*.spec.js"
   },
   "repository": {
@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "dotenv": "^2.0.0",
     "mocha": "^3.0.2",
     "sequelize-cli": "^2.4.0",
     "supertest": "^2.0.0"
