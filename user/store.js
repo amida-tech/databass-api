@@ -3,7 +3,7 @@ const config    = require('./../config/index');
 
 const db = new Sequelize(config.userdb.name, config.userdb.user, config.userdb.pass, {
   host: config.userdb.host,
-  dialect: config.userdb.dialect,
+  dialect: config.userdb.dialect || 'postgres',
   port: config.userdb.port,
   pool: {
     max: 20,

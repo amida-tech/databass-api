@@ -10,8 +10,8 @@ let jwt;
 const policyNumber = 'DME101.030';
 
 let testUser = {
-  email: 'test@amida-tech.com',
-  password: UserModel.hashPassword('password', 10)
+  email: config.user.email,
+  password: UserModel.hashPassword(config.user.password, 10)
 }
 
 describe('Starting API Server', function() {

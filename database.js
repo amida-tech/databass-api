@@ -1,9 +1,10 @@
 const Sequelize = require('sequelize');
 const config    = require('./config');
 
+console.log(config.db.dialect);
 const database = new Sequelize(config.db.name, config.db.user, config.db.pass, {
   host: config.db.host,
-  dialect: config.db.dialect,
+  dialect: config.db.dialect || 'postgres',
   port: config.db.port,
   pool: {
     max: 20,
