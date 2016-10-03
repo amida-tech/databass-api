@@ -1,7 +1,8 @@
 const SQ = require('sequelize');
 const db = require ('./store');
 
-const Token = db.define('token', {
+const Token = db.define('token',
+{
   userId: {
     type: SQ.INTEGER,
     field: 'userID',
@@ -18,7 +19,6 @@ const Token = db.define('token', {
 {
   tableName: 'Token',
   timestamps: false
-}
 });
 
 Token.removeAttribute('id');

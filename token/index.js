@@ -1,1 +1,2 @@
-module.exports = require('./controller');
+const controller = require('./controller');
+const middleware = require('./middleware');
