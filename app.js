@@ -8,7 +8,7 @@ const express    = require('express');
 const cors       = require('cors');
 const bodyParser = require('body-parser');
 const UserController = require('./user');
-const TokenController = require('./token');
+const Token = require('./token');
 const ActivityController = require('./activity');
 const PolicyController   = require('./policy');
 //const passport   = require('passport');
@@ -42,15 +42,15 @@ app.use(cors(CORSOptions));
 app.use(jsonParser);
 //app.use(passport.initialize());
 //app.use(passport.session());
-
+console.log(Token.middleware.authenticate);
 //
 // User Routes
 //
 //app.post('/api/v1.0/user', jsonParser, UserController.createNewUser);
 //app.get('/api/v1.0/user/token', passport.authenticate('basic', {session: false}), TokenController.create);
-app.get('/api/v1.0/user', UserController.showCurrentUser);
+app.get('/api/v1.0/user', Token.middleware.authenticate, Token.controller.getCurrentUser);
 app.get('/api/v1.0/activities/:policyNumber', ActivityController.getActivityByPolicyNumber);
-app.get('/api/v1.0/policies', PolicyController.showPolicies);
-app.get('/api/v1.0/policies/:policyNumber', PolicyController.getPolicyByNumber);
+app.get('/api/v1.0/policies', Token.middleware.authenticate, PolicyController.showPolicies);
+app.get('/api/v1.0/policies/:policyNumber', Token.middleware.authenticate, PolicyController.getPolicyByNumber);
 
 module.exports = app;

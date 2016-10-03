@@ -1,28 +1,7 @@
-const jwt = require('jsonwebtoken');
-const config = require('../config');
 
 module.exports = {
-  create: function(req, res) {
-    const token = createUserJWT(req.user);
-    if (token) {
-      res.status(200).json({token}); // This is for development. We will probably want to return as a cookie.
-    } else {
-      res.status(400);
-    }
+  getCurrentUser: function(req, res) {
+    const currentUser = { userId: req.user, realm: req.realm };
+    res.json(currentUser);
   }
 };
-
-function createJWT(payload) {
-  const options = { expiresIn: "30d" };
-  return jwt.sign(payload, config.jwt.secret, options);
-}
-
-function createUserJWT(user) {
-
-  const payload = {
-    id: user.id,
-    email: user.email,
-    admin: user.admin
-  };
-  return createJWT(payload);
-}

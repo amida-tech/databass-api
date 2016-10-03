@@ -1,16 +1,23 @@
-const Token = require('/model');
+const Token = require('./model');
 
 const middleware = {
   authenticate: function(req, res, next) {
-    const requestToken = req.get('token');
+    const requestToken = req.query.token;
+    console.log(requestToken);
     if (requestToken) {
-      Token.findOne({where: {body: req.get('token')}, attributes: ['userId', 'realm']}).then(token => {
-        req.user = token.userId;
-        req.realm = token.realm;
-        next();
+      Token.findOne({where: {body: requestToken}, attributes: ['userId', 'realm']}).then(token => {
+        if (token) {
+          req.user = token.userId;
+          req.realm = token.realm;
+          next();
+        } else {
+          res.sendStatus(401);
+        }
       });
     } else {
       res.sendStatus(401);
     }
   }
 }
+
+module.exports = middleware;
