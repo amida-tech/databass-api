@@ -18,6 +18,22 @@ const PolicyController = {
       return res.json(policy);
     });
   }
+  postPolicy: (req, res) => {
+    Policy.findOrCreate(
+      {
+        where:
+        {
+          PolicyNumber: req.params.policyNumber
+        },
+        {
+          PolicyTitle: req.params.policyTitle
+        }
+      }
+    )
+    .then(policy => {
+      return res.json(policy);
+    });
+  }
 };
 
 module.exports = PolicyController;
