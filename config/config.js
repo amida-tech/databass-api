@@ -19,7 +19,10 @@ const config = {
     jwt: {
       secret: process.env.MPDB_DEVELOPMENT_JWT_SECRET
     },
-    port: process.env.MPDB_DEVELOPMENT_APP_PORT
+    port: process.env.MPDB_DEVELOPMENT_APP_PORT,
+    baseURI: '/' + process.env.MPDB_BASEURI + '/' + process.env.MDB_VERSION + '/',
+    version: process.env.MPDB_VERSION,
+    cors: process.env.MPDB_DEVELOPMENT_APP_CORS
   },
   test: {
     db: {
@@ -42,6 +45,8 @@ const config = {
       secret: process.env.MPDB_TEST_JWT_SECRET
     },
     port: process.env.MPDB_TEST_APP_PORT,
+    baseURI: process.env.MPDB_BASE_URI + process.env.MDB_VERSION + '/',
+    version: process.env.MPDB_VERSION,
     user: {
       email: 'test@amida-tech.com',
       password: 'password'

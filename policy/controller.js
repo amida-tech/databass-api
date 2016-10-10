@@ -17,16 +17,14 @@ const PolicyController = {
     .then(policy => {
       return res.json(policy);
     });
-  }
+  },
   postPolicy: (req, res) => {
     Policy.findOrCreate(
       {
         where:
         {
-          PolicyNumber: req.params.policyNumber
-        },
-        {
-          PolicyTitle: req.params.policyTitle
+          PolicyNumber: req.body.PolicyNumber,
+          PolicyTitle: req.body.PolicyTitle
         }
       }
     )

@@ -42,7 +42,7 @@ app.use(cors(CORSOptions));
 app.use(jsonParser);
 //app.use(passport.initialize());
 //app.use(passport.session());
-console.log(Token.middleware.authenticate);
+
 //
 // User Routes
 //
@@ -51,6 +51,7 @@ console.log(Token.middleware.authenticate);
 app.get('/api/v1.0/user', Token.middleware.authenticate, Token.controller.getCurrentUser);
 app.get('/api/v1.0/activities/:policyNumber', ActivityController.getActivityByPolicyNumber);
 app.get('/api/v1.0/policies', Token.middleware.authenticate, PolicyController.showPolicies);
+app.post('/api/v1.0/policies', PolicyController.postPolicy);
 app.get('/api/v1.0/policies/:policyNumber', Token.middleware.authenticate, PolicyController.getPolicyByNumber);
 
 module.exports = app;
