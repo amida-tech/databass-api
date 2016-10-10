@@ -50,6 +50,7 @@ app.use(jsonParser);
 //app.get('/api/v1.0/user/token', passport.authenticate('basic', {session: false}), TokenController.create);
 app.get('/api/v1.0/user', Token.middleware.authenticate, Token.controller.getCurrentUser);
 app.get('/api/v1.0/activities/:policyNumber', ActivityController.getActivityByPolicyNumber);
+app.post('/api/v1.0/activities', Token.middleware.authenticate, ActivityController.postActivity);
 app.get('/api/v1.0/policies', Token.middleware.authenticate, PolicyController.showPolicies);
 app.post('/api/v1.0/policies', PolicyController.postPolicy);
 app.get('/api/v1.0/policies/:policyNumber', Token.middleware.authenticate, PolicyController.getPolicyByNumber);

@@ -22,6 +22,21 @@ const ActivityController = {
       .then(activities => {
         return res.json(activities)
       });
+  },
+  postActivity: (req, res) => {
+    Activity
+      .create(
+        {
+          PolicyNumber: req.body.PolicyNumber,
+          ActivityDate: req.body.ActivityDate,
+          ActivityType: req.body.ActivityType,
+          Details: req.body.Details,
+          UserID: req.body.UserID
+        }
+      )
+      .then(activity => {
+        return res.json(activity);
+      });
   }
 };
 
